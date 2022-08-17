@@ -17,14 +17,35 @@ namespace teste_GoogleAPI
 {
     public partial class Form1 : Form
     {
-        IFirebaseConfig config = new FirebaseConfig();
+        IFirebaseConfig config = new FirebaseConfig
+        {
+            BasePath = "teste-api-6d2b0.appspot.com/"
+        };
+            
         public Form1()
         {
             InitializeComponent();
         }
         
+        IFirebaseClient client;
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            txSenha.PasswordChar = '*';
+
+            try
+            {
+                client = new FireSharp.FirebaseClient(config);
+
+                if(client != null)
+                {
+                    
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Falha no login");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -65,6 +86,120 @@ namespace teste_GoogleAPI
                 label4.Enabled = false;
                 dateTimePicker1.Enabled = false;
             }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!comboBox2.SelectedItem.Equals("Regra...") || !comboBox2.SelectedItem.Equals(""))
+            {
+
+            }
+            else
+            {
+                label5.Visible = false;
+                label6.Visible = false;
+                label7.Visible = false;
+                label8.Visible = false;
+                progressBar1.Visible = false;
+            }
+
+        }
+
+        private void textBox2_Enter(object sender, EventArgs e)
+        {
+            if (txLogin.Text.Equals("Login"))
+            {
+                txLogin.Text = "";
+                txLogin.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void textBox2_Leave(object sender, EventArgs e)
+        {
+            if (txLogin.Text.Equals(""))
+            {
+                txLogin.Text = "Login";
+                txLogin.ForeColor = Color.Silver;
+            }
+        }
+
+        private void textBox3_Enter(object sender, EventArgs e)
+        {
+            if (txSenha.Text.Equals("Senha"))
+            {
+                txSenha.Text = "";
+                txSenha.ForeColor = Color.Black;
+            }
+
+            
+        }
+
+        private void textBox3_Leave(object sender, EventArgs e)
+        {
+            if (txSenha.Text.Equals(""))
+            {
+                textBox1.PasswordChar = '\0';
+
+                txSenha.Text = "Senha";
+                txSenha.ForeColor = Color.Silver;
+
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        public static string passeUsuario;
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(txLogin.Text) || string.IsNullOrEmpty(txSenha.Text))
+            {
+                MessageBox.Show("Por favor, insira o usuario e a senha!");
+            }
+            else
+            {
+                FirebaseResponse response = client.Get("Users/");
+                Dictionary<string, register> result = response.ResultAs<Dictionary<string, register>>();
+
+                foreach(var get in result)
+                {
+                    string loginResultado = get.Value.usuario;
+                    string senhaResultado = get.Value.senha;
+
+                    if(txLogin.Text == loginResultado)
+                    {
+                        if(txSenha.Text == senhaResultado)
+                        {
+                            MessageBox.Show("Logado com sucesso " + txLogin + "!!!");
+                            passeUsuario = txLogin.Text;
+
+                            txLogin.Enabled = false;
+                            txSenha.Enabled = false;
+                            button3.Enabled = false;
+
+                            button5.Enabled = true;
+                            button5.Visible = true;
+
+                            label9.Text = "Logado como: " +txLogin;
+                            label9.Visible = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
