@@ -149,7 +149,8 @@ namespace teste_GoogleAPI
 
         private void button4_Click(object sender, EventArgs e)
         {
-            
+            TelaCadastro cadastro = new TelaCadastro();
+            cadastro.Show();
         }
 
         public static string passeUsuario;

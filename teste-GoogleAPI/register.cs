@@ -10,5 +10,6 @@ namespace teste_GoogleAPI
     {
         public string usuario { get; set; }
         public string senha { get; set; }
+        public string confirma { get; set; }
     }
 }

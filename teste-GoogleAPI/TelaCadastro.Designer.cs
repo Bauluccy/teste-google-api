@@ -1,6 +1,6 @@
 ﻿namespace teste_GoogleAPI
 {
-    partial class Form2
+    partial class TelaCadastro
     {
         /// <summary>
         /// Required designer variable.
@@ -43,6 +43,7 @@
             this.buttonCadastrar.TabIndex = 5;
             this.buttonCadastrar.Text = "Cadastrar";
             this.buttonCadastrar.UseVisualStyleBackColor = true;
+            this.buttonCadastrar.Click += new System.EventHandler(this.buttonCadastrar_Click);
             // 
             // txSenhaCadastro
             // 
@@ -53,6 +54,8 @@
             this.txSenhaCadastro.Size = new System.Drawing.Size(151, 26);
             this.txSenhaCadastro.TabIndex = 4;
             this.txSenhaCadastro.Text = "Senha";
+            this.txSenhaCadastro.Enter += new System.EventHandler(this.txSenhaCadastro_Enter);
+            this.txSenhaCadastro.Leave += new System.EventHandler(this.txSenhaCadastro_Leave);
             // 
             // txLoginCadastro
             // 
@@ -63,6 +66,8 @@
             this.txLoginCadastro.Size = new System.Drawing.Size(151, 26);
             this.txLoginCadastro.TabIndex = 3;
             this.txLoginCadastro.Text = "Login";
+            this.txLoginCadastro.Enter += new System.EventHandler(this.txLoginCadastro_Enter);
+            this.txLoginCadastro.Leave += new System.EventHandler(this.txLoginCadastro_Leave);
             // 
             // txConfirmaCadastro
             // 
@@ -73,8 +78,10 @@
             this.txConfirmaCadastro.Size = new System.Drawing.Size(151, 26);
             this.txConfirmaCadastro.TabIndex = 6;
             this.txConfirmaCadastro.Text = "Confirmar";
+            this.txConfirmaCadastro.Enter += new System.EventHandler(this.txConfirmaCadastro_Enter);
+            this.txConfirmaCadastro.Leave += new System.EventHandler(this.txConfirmaCadastro_Leave);
             // 
-            // Form2
+            // TelaCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -83,8 +90,9 @@
             this.Controls.Add(this.buttonCadastrar);
             this.Controls.Add(this.txSenhaCadastro);
             this.Controls.Add(this.txLoginCadastro);
-            this.Name = "Form2";
+            this.Name = "TelaCadastro";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.TelaCadastro_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
